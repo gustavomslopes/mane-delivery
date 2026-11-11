@@ -4,10 +4,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" prefHeight="195.0" prefWidth="218.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.BlocoPedidoController">
+<VBox alignment="CENTER" prefHeight="195.0" prefWidth="218.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.BlocoPedidoController">
    <children>
-      <Label fx:id="lbidPedido" text="0">
+      <Label fx:id="lbidPedido" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

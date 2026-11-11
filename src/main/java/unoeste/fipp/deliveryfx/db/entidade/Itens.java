@@ -59,4 +59,15 @@ public class Itens {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    public String getNomeProduto() {
+        return produto != null ? produto.getNome() : "";
+    }
+
+    public double getPreco() {
+        return produto != null ? produto.getPreco() : 0;
+    }
+
+    public double getTotal() {
+        return getPreco() * quantidade;
+    }
 }

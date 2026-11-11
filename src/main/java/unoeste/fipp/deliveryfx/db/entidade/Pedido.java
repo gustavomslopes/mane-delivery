@@ -33,6 +33,17 @@ public class Pedido {
         this.status = status;
     }
 
+    public Pedido(LocalDate data, String clienteNome, String clienteTelefone, double total, String local, String numero, TipoPagamento tipoPagamento, Status status ) {
+        this.data = data;
+        this.clienteNome = clienteNome;
+        this.clienteTelefone = clienteTelefone;
+        this.total = total;
+        this.local = local;
+        this.numero = numero;
+        this.tipoPagamento = tipoPagamento;
+        this.status = status;
+    }
+
     public void adicionarItem(Item item) {
         this.itens.add(item);
     }

@@ -23,8 +23,8 @@ public class StatusDal implements IDAL<Status> {
     public boolean alterar(Status entidade) {
         String sql = """
                 UPDATE status
-                SET status_descricao = '$1', status_obs = '$2', status_sucesso = $3
-                WHERE status_id = $4""";
+                SET st_descr = '$1', st_obs = '$2', st_sucesso = $3
+                WHERE st_id = $4""";
         sql = sql.replace("$1", entidade.getDescricao());
         sql = sql.replace("$2", entidade.getObservacao());
         sql = sql.replace("$3", entidade.isSucesso() ? "true" : "false");
@@ -34,20 +34,20 @@ public class StatusDal implements IDAL<Status> {
 
     @Override
     public boolean apagar(Status entidade) {
-        return SingletonDB.getConexao().manipular("DELETE FROM status WHERE status_id = " + entidade.getId());
+        return SingletonDB.getConexao().manipular("DELETE FROM status WHERE st_id = " + entidade.getId());
     }
 
     @Override
     public Status get(int id) {
         Status status = null;
-        String sql = "SELECT * FROM status WHERE status_id = " + id;
+        String sql = "SELECT * FROM status WHERE st_id = " + id;
         try (ResultSet rs = SingletonDB.getConexao().consultar(sql)) {
             if (rs.next()) {
                 status = new Status(
-                        rs.getInt("status_id"),
-                        rs.getString("status_descricao"),
-                        rs.getString("status_obs"),
-                        rs.getBoolean("status_sucesso")
+                        rs.getInt("st_id"),
+                        rs.getString("st_descr"),
+                        rs.getString("st_obs"),
+                        rs.getBoolean("st_sucesso")
                 );
             }
         } catch (Exception e) {
@@ -66,10 +66,10 @@ public class StatusDal implements IDAL<Status> {
         try (ResultSet rs = SingletonDB.getConexao().consultar(sql)) {
             while (rs.next()) {
                 Status status = new Status(
-                        rs.getInt("status_id"),
-                        rs.getString("status_descricao"),
-                        rs.getString("status_obs"),
-                        rs.getBoolean("status_sucesso")
+                        rs.getInt("st_id"),
+                        rs.getString("st_descr"),
+                        rs.getString("st_obs"),
+                        rs.getBoolean("st_sucesso")
                 );
                 lista.add(status);
             }

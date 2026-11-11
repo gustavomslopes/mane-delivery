@@ -1,26 +1,36 @@
 package unoeste.fipp.deliveryfx.menus_cadastros;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import unoeste.fipp.deliveryfx.db.dals.CategoriaDal;
+import unoeste.fipp.deliveryfx.db.dals.MarcaDal;
+import unoeste.fipp.deliveryfx.db.dals.ProdutoDal;
 import unoeste.fipp.deliveryfx.db.entidade.Categoria;
+import unoeste.fipp.deliveryfx.db.entidade.Marca;
 import unoeste.fipp.deliveryfx.db.entidade.Produto;
 import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 
-public class MenuCadastroProduto {
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class MenuCadastroProduto implements Initializable {
 
     @FXML
     private Button btCadastrarProduto;
 
     @FXML
-    private ComboBox<?> cbidcategoria;
+    private ComboBox<Categoria> cbidcategoria;
 
     @FXML
-    private ComboBox<?> cbidmarca;
+    private ComboBox<Marca> cbidmarca;
 
     @FXML
     private TextField tfestoqueproduto;
@@ -31,16 +41,13 @@ public class MenuCadastroProduto {
     @FXML
     private TextField tfprecoproduto;
 
-    @FXML
-    private TextField tfvolumeproduto;
 
-    //public Produto(String nome, int estoque, double preco, LocalDate data, String unidade, Categoria categoria, double volume, Marca marca)
-
+    //public Produto(String nome, int estoque, double preco, Categoria categoria, Marca marca)
     @FXML
     void onCadastrarProduto(ActionEvent event) {
-        /*Produto produto = new Produto(tfnomeproduto.getText(),Integer.parseInt(tfestoqueproduto.getText()),Double.parseDouble(tfprecoproduto.getText().replace(",",".")));
+        Produto produto = new Produto(tfnomeproduto.getText(),Integer.parseInt(tfestoqueproduto.getText()),Double.parseDouble(tfprecoproduto.getText().replace(",",".")),cbidcategoria.getSelectionModel().getSelectedItem(),cbidmarca.getSelectionModel().getSelectedItem());
         ProdutoDal produtoDal = new ProdutoDal();
-        if (!produtoDal.gravar(categoria)) {
+        if (!produtoDal.gravar(produto)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
             alert.showAndWait();
@@ -53,8 +60,29 @@ public class MenuCadastroProduto {
 
             alert.showAndWait();
 
-            tfnomecat.clear();
-        }*/
+            tfnomeproduto.clear();
+            tfprecoproduto.clear();
+            tfestoqueproduto.clear();
+            cbidcategoria.getSelectionModel().clearSelection();
+            cbidmarca.getSelectionModel().clearSelection();
+        }
     }
 
+    private void carregarCategorias() {
+        CategoriaDal categoriaDAL = new CategoriaDal();
+        cbidcategoria.setItems(FXCollections.observableArrayList(categoriaDAL.get("")));
+    }
+
+    private void carregarMarca() {
+        MarcaDal marcaDAL = new MarcaDal();
+        cbidmarca.setItems(FXCollections.observableArrayList(marcaDAL.get("")));
+    }
+
+    //cbCategoria.setItems(FXCollections.observableArrayList(new CategoriaDal().get("")));
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        carregarCategorias();
+        carregarMarca();
+    }
 }

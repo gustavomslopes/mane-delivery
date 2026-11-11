@@ -9,5 +9,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MenuMovimentacaoController {
-
+    public void onPainelPedidos(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("painel-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Painel de Pedidos");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
 }
