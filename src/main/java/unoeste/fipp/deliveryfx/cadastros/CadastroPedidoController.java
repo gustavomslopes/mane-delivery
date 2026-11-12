@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
 import java.util.Locale;
 
 public class CadastroPedidoController {
@@ -99,32 +100,37 @@ public class CadastroPedidoController {
 
     @FXML
     void onCadastrarPedido(ActionEvent event) {
-        Status status = new StatusDal().get(6);
-        Pedido pedido = new Pedido(dpData.getValue(), tfNome.getText(), tftel.getText(), Double.parseDouble(lbvalor.getText().replace(",", ".")), tflocal.getText(), tfnumero.getText(), cbpgt.getSelectionModel().getSelectedItem(), status);
-
-        PedidoDal pedidoDal = new PedidoDal();
-        if (!pedidoDal.gravar(pedido)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erro ao gravar: " + SingletonDB.getConexao().getMensagemErro());
-            alert.showAndWait();
+        if(tfNome.getText().isEmpty() || tftel.getText().isEmpty() || lbvalor.getText().isEmpty() || tfnumero.getText().isEmpty() || cbpgt.getSelectionModel().isEmpty() || tvTabela.getItems().isEmpty()){
+            tfNome.requestFocus();
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Pedido cadastrado com sucesso!");
-            alert.showAndWait();
 
+            Status status = new StatusDal().get(6);
+            Pedido pedido = new Pedido(dpData.getValue(), tfNome.getText(), tftel.getText(), Double.parseDouble(lbvalor.getText().replace(",", ".")), tflocal.getText(), tfnumero.getText(), cbpgt.getSelectionModel().getSelectedItem(), status);
+
+            PedidoDal pedidoDal = new PedidoDal();
+            if (!pedidoDal.gravar(pedido)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erro ao gravar: " + SingletonDB.getConexao().getMensagemErro());
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Pedido cadastrado com sucesso!");
+                alert.showAndWait();
+            }
+
+            tfNome.clear();
+            tfcep.clear();
+            tflocal.clear();
+            tfnumero.clear();
+            tftel.clear();
+            cbpgt.getSelectionModel().clearSelection();
+            cbProduto.getSelectionModel().clearSelection();
+            dpData.setValue(null);
+            spQuant.getValueFactory().setValue(1);
+            tvTabela.getItems().clear();
+            lbvalor.setText("0,0");
         }
 
-        tfNome.clear();
-        tfcep.clear();
-        tflocal.clear();
-        tfnumero.clear();
-        tftel.clear();
-        cbpgt.getSelectionModel().clearSelection();
-        cbProduto.getSelectionModel().clearSelection();
-        dpData.setValue(null);
-        spQuant.getValueFactory().setValue(1);
-        tvTabela.getItems().clear();
-        lbvalor.setText("0,0");
     }
 
     @FXML
@@ -198,7 +204,7 @@ public class CadastroPedidoController {
         tvTabela.setItems(FXCollections.observableArrayList());
 
         spQuant.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 999, 1));
-
+        dpData.setValue(LocalDate.now());
         lbvalor.setText("0.00");
         coProd.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
         coQuant.setCellValueFactory(new PropertyValueFactory<>("quantidade"));

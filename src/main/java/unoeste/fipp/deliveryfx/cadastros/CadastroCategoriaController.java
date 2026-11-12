@@ -19,23 +19,28 @@ public class CadastroCategoriaController {
 
     @FXML
     void onCadastrarCat(ActionEvent event) throws Exception {
-        Categoria categoria = new Categoria(tfnomecat.getText());
-        CategoriaDal categoriaDal = new CategoriaDal();
-        if (!categoriaDal.gravar(categoria)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
-            alert.showAndWait();
+        if(tfnomecat.getText().isEmpty()){
+            tfnomecat.requestFocus();
+        } else{
+            Categoria categoria = new Categoria(tfnomecat.getText());
+            CategoriaDal categoriaDal = new CategoriaDal();
+            if (!categoriaDal.gravar(categoria)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
+                alert.showAndWait();
+            }
+            else {
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setContentText("Categoria cadastrada com sucesso!");
+
+                alert.showAndWait();
+
+                tfnomecat.clear();
+            }
         }
-        else {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-            alert.setContentText("Categoria cadastrada com sucesso!");
-
-            alert.showAndWait();
-
-            tfnomecat.clear();
-        }
     }
 
 }

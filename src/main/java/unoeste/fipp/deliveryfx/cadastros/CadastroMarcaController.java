@@ -19,23 +19,28 @@ public class CadastroMarcaController {
 
     @FXML
     void onCadastrarMarca(ActionEvent event) {
-        Marca marca = new Marca(tfnomemarca.getText());
-        MarcaDal marcaDal = new MarcaDal();
-        if (!marcaDal.gravar(marca)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
-            alert.showAndWait();
+        if(tfnomemarca.getText().isEmpty()){
+            tfnomemarca.requestFocus();
+        } else {
+            Marca marca = new Marca(tfnomemarca.getText());
+            MarcaDal marcaDal = new MarcaDal();
+            if (!marcaDal.gravar(marca)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
+                alert.showAndWait();
+            }
+            else {
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setContentText("Categoria cadastrada com sucesso!");
+
+                alert.showAndWait();
+
+                tfnomemarca.clear();
+            }
         }
-        else {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-            alert.setContentText("Categoria cadastrada com sucesso!");
-
-            alert.showAndWait();
-
-            tfnomemarca.clear();
-        }
     }
 
 }

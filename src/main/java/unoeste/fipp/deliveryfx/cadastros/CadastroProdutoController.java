@@ -43,27 +43,36 @@ public class CadastroProdutoController implements Initializable {
     //public Produto(String nome, int estoque, double preco, Categoria categoria, Marca marca)
     @FXML
     void onCadastrarProduto(ActionEvent event) {
-        Produto produto = new Produto(tfnomeproduto.getText(),Integer.parseInt(tfestoqueproduto.getText()),Double.parseDouble(tfprecoproduto.getText().replace(",",".")),cbidcategoria.getSelectionModel().getSelectedItem(),cbidmarca.getSelectionModel().getSelectedItem());
-        ProdutoDal produtoDal = new ProdutoDal();
-        if (!produtoDal.gravar(produto)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
-            alert.showAndWait();
+        if (tfnomeproduto.getText().isEmpty() || tfestoqueproduto.getText().isEmpty() || tfprecoproduto.getText().isEmpty() || cbidcategoria.getSelectionModel().isEmpty() || cbidmarca.getSelectionModel().isEmpty()) {
+            tfnomeproduto.requestFocus();
+        } else {
+            try {
+                Produto produto = new Produto(tfnomeproduto.getText(), Integer.parseInt(tfestoqueproduto.getText()), Double.parseDouble(tfprecoproduto.getText().replace(",", ".")), cbidcategoria.getSelectionModel().getSelectedItem(), cbidmarca.getSelectionModel().getSelectedItem());
+                ProdutoDal produtoDal = new ProdutoDal();
+                if (!produtoDal.gravar(produto)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
+                    alert.showAndWait();
+                } else {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                    alert.setContentText("Categoria cadastrada com sucesso!");
+
+                    alert.showAndWait();
+
+                    tfnomeproduto.clear();
+                    tfprecoproduto.clear();
+                    tfestoqueproduto.clear();
+                    cbidcategoria.getSelectionModel().clearSelection();
+                    cbidmarca.getSelectionModel().clearSelection();
+                }
+            } catch (Exception e){
+                tfnomeproduto.requestFocus();
+            }
         }
-        else {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-            alert.setContentText("Categoria cadastrada com sucesso!");
-
-            alert.showAndWait();
-
-            tfnomeproduto.clear();
-            tfprecoproduto.clear();
-            tfestoqueproduto.clear();
-            cbidcategoria.getSelectionModel().clearSelection();
-            cbidmarca.getSelectionModel().clearSelection();
-        }
     }
 
     private void carregarCategorias() {
