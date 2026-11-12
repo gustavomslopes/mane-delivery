@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PainelController implements Initializable {
+public class TodosPedidosController implements Initializable {
 
     public TilePane painel;
 

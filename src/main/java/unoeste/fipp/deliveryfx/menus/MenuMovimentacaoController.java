@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class MenuMovimentacaoController {
     public void onPainelPedidos(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("painel-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("todos-pedidos-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setTitle("Painel de Pedidos");

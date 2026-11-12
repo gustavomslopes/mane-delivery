@@ -7,6 +7,4 @@ public class CadastroTipoPagamentoController {
 
     }
 
-    public void onCadastrarProduto(ActionEvent actionEvent) {
-    }
 }
