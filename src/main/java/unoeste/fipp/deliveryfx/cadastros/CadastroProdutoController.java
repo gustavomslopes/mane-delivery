@@ -20,10 +20,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CadastroProdutoController implements Initializable {
-
-    @FXML
-    private Button btCadastrarProduto;
-
     @FXML
     private ComboBox<Categoria> cbidcategoria;
 

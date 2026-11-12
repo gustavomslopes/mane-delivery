@@ -33,7 +33,7 @@
             <Insets left="35.0" right="35.0" />
          </VBox.margin>
       </TextField>
-      <Button fx:id="btCadastrarTipoPag" mnemonicParsing="false" onAction="#onCadastrarTipoPag" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onCadastrarTipoPag" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

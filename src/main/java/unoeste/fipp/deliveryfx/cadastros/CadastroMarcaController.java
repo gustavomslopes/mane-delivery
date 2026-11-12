@@ -12,9 +12,6 @@ import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 public class CadastroMarcaController {
 
     @FXML
-    private Button btCadastrarMarca;
-
-    @FXML
     private TextField tfnomemarca;
 
     @FXML

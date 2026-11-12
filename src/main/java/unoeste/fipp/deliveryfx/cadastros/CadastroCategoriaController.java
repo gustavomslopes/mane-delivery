@@ -12,9 +12,6 @@ import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 public class CadastroCategoriaController {
 
     @FXML
-    private Button btCadastrarCat;
-
-    @FXML
     private TextField tfnomecat;
 
     @FXML

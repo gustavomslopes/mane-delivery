@@ -1,15 +1,16 @@
 package unoeste.fipp.deliveryfx.cadastros;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import unoeste.fipp.deliveryfx.db.dals.TipoPagamentoDal;
 import unoeste.fipp.deliveryfx.db.entidade.TipoPagamento;
 
 public class CadastroTipoPagamentoController {
-    public TextField tfnometipopag;
-    public Button btCadastrarTipoPag;
+
+    @FXML
+    private TextField tfnometipopag;
 
     public void onCadastrarTipoPag(ActionEvent actionEvent) {
         if(tfnometipopag.getText().isEmpty()){
