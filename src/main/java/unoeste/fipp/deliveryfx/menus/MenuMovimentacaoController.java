@@ -1,10 +1,11 @@
-package unoeste.fipp.deliveryfx;
+package unoeste.fipp.deliveryfx.menus;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import unoeste.fipp.deliveryfx.DeliveryFX;
 
 import java.io.IOException;
 

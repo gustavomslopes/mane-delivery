@@ -1,8 +1,8 @@
-package unoeste.fipp.deliveryfx.menus_cadastros;
+package unoeste.fipp.deliveryfx.cadastros;
 
 import javafx.event.ActionEvent;
 
-public class MenuCadastroTipoPagamento {
+public class CadastroTipoPagamentoController {
     public void onCadastrarTipoPag(ActionEvent actionEvent) {
 
     }

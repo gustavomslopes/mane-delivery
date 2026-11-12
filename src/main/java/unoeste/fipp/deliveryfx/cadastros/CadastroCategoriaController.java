@@ -1,4 +1,4 @@
-package unoeste.fipp.deliveryfx.menus_cadastros;
+package unoeste.fipp.deliveryfx.cadastros;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,24 +6,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import unoeste.fipp.deliveryfx.db.dals.CategoriaDal;
-import unoeste.fipp.deliveryfx.db.dals.MarcaDal;
 import unoeste.fipp.deliveryfx.db.entidade.Categoria;
-import unoeste.fipp.deliveryfx.db.entidade.Marca;
 import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 
-public class MenuCadastroMarcaController {
+public class CadastroCategoriaController {
 
     @FXML
-    private Button btCadastrarMarca;
+    private Button btCadastrarCat;
 
     @FXML
-    private TextField tfnomemarca;
+    private TextField tfnomecat;
 
     @FXML
-    void onCadastrarMarca(ActionEvent event) {
-        Marca marca = new Marca(tfnomemarca.getText());
-        MarcaDal marcaDal = new MarcaDal();
-        if (!marcaDal.gravar(marca)) {
+    void onCadastrarCat(ActionEvent event) throws Exception {
+        Categoria categoria = new Categoria(tfnomecat.getText());
+        CategoriaDal categoriaDal = new CategoriaDal();
+        if (!categoriaDal.gravar(categoria)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Erro ao gravar" + SingletonDB.getConexao().getMensagemErro());
             alert.showAndWait();
@@ -36,7 +34,7 @@ public class MenuCadastroMarcaController {
 
             alert.showAndWait();
 
-            tfnomemarca.clear();
+            tfnomecat.clear();
         }
     }
 

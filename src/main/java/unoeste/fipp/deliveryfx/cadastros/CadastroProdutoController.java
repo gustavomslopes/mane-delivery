@@ -1,7 +1,6 @@
-package unoeste.fipp.deliveryfx.menus_cadastros;
+package unoeste.fipp.deliveryfx.cadastros;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,10 +17,9 @@ import unoeste.fipp.deliveryfx.db.entidade.Produto;
 import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class MenuCadastroProduto implements Initializable {
+public class CadastroProdutoController implements Initializable {
 
     @FXML
     private Button btCadastrarProduto;

@@ -1,4 +1,4 @@
-package unoeste.fipp.deliveryfx.menus_cadastros;
+package unoeste.fipp.deliveryfx.cadastros;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -22,11 +22,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
-public class MenuCadastroPedido {
+public class CadastroPedidoController {
     public TableColumn coProd;
     public TableColumn coQuant;
     public TableColumn coPreco;

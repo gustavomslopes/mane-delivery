@@ -8,6 +8,8 @@ module unoeste.fipp.deliveryfx {
 
     opens unoeste.fipp.deliveryfx to javafx.fxml;
     exports unoeste.fipp.deliveryfx;
-    exports unoeste.fipp.deliveryfx.menus_cadastros;
-    opens unoeste.fipp.deliveryfx.menus_cadastros to javafx.fxml;
+    exports unoeste.fipp.deliveryfx.cadastros;
+    opens unoeste.fipp.deliveryfx.cadastros to javafx.fxml;
+    exports unoeste.fipp.deliveryfx.menus;
+    opens unoeste.fipp.deliveryfx.menus to javafx.fxml;
 }

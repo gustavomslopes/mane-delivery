@@ -1,14 +1,13 @@
-package unoeste.fipp.deliveryfx;
+package unoeste.fipp.deliveryfx.menus;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import unoeste.fipp.deliveryfx.DeliveryFX;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +18,7 @@ public class MenuPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        URL urlImagem = getClass().getResource("baixados.png");
+        URL urlImagem = getClass().getResource("/unoeste/fipp/deliveryfx/baixados.png");
 
         if (urlImagem != null) {
             Image imagem = new Image(urlImagem.toExternalForm());

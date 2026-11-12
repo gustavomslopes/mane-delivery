@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="554.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.menus_cadastros.MenuCadastroMarcaController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="554.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.cadastros.CadastroCategoriaController">
    <children>
-      <Label text="Cadastro de marca">
+      <Label text="Cadastro de Categoria">
          <padding>
             <Insets bottom="50.0" />
          </padding>
@@ -25,7 +25,7 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="tfnomemarca" alignment="CENTER" prefHeight="43.0" prefWidth="419.0" promptText="Digite aqui o nome da marca">
+      <TextField fx:id="tfnomecat" alignment="CENTER" prefHeight="43.0" prefWidth="419.0" promptText="Digite aqui o nome da categoria">
          <font>
             <Font name="Arial Rounded MT Bold" size="20.0" />
          </font>
@@ -33,7 +33,7 @@
             <Insets left="35.0" right="35.0" />
          </VBox.margin>
       </TextField>
-      <Button fx:id="btCadastrarMarca" mnemonicParsing="false" onAction="#onCadastrarMarca" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btCadastrarCat" mnemonicParsing="false" onAction="#onCadastrarCat" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

@@ -1,4 +1,4 @@
-package unoeste.fipp.deliveryfx;
+package unoeste.fipp.deliveryfx.menus;
 
 public class MenuRelatorioController {
 
