@@ -3,6 +3,7 @@ package unoeste.fipp.deliveryfx;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -20,39 +21,79 @@ import java.util.ResourceBundle;
 public class TodosPedidosController implements Initializable {
 
     public TilePane painel;
+    public Label lbTitulo;
     private Pedido pedido;
+    private boolean filtro = false;
+
+    public void setFiltro(boolean filtro) {
+        this.filtro = filtro;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Deixe vazio para não carregar antes do filtro ser definido
+    }
+
+    public void configurarTela(String titulo, boolean apenasNaoEntregues) {
+        this.lbTitulo.setText(titulo);
+        this.filtro = apenasNaoEntregues;
         carregarPedidosPedentes();
     }
 
-    private void carregarPedidosPedentes() {
+    public void carregarPedidosPedentes() {
         PedidoDal pedidoDal = new PedidoDal();
         List<Pedido> pedidos = pedidoDal.get("");
 
         try {
-            for (Pedido pedidoAtual : pedidos) {
-                FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("bloco-pedido-view.fxml"));
-                VBox bloco = fxmlLoader.load();
+            if (!filtro) {
+                for (Pedido pedidoAtual : pedidos) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("bloco-pedido-view.fxml"));
+                    VBox bloco = fxmlLoader.load();
 
-                BlocoPedidoController controller = fxmlLoader.getController();
-                controller.setIdPedido(pedidoAtual.getId());
-                controller.setLbNomeCliPedido(pedidoAtual.getClienteNome());
-                controller.setLbDataPedido(pedidoAtual.getData());
-                controller.setLbValorTotalPedido(pedidoAtual.getTotal());
-                controller.setLbStatusPedido(pedidoAtual.getStatus().getDescricao());
+                    BlocoPedidoController controller = fxmlLoader.getController();
+                    controller.setIdPedido(pedidoAtual.getId());
+                    controller.setLbNomeCliPedido(pedidoAtual.getClienteNome());
+                    controller.setLbDataPedido(pedidoAtual.getData());
+                    controller.setLbValorTotalPedido(pedidoAtual.getTotal());
+                    controller.setLbStatusPedido(pedidoAtual.getStatus().getDescricao());
 
-                bloco.setOnMouseClicked(mouseEvent -> {
-                    try {
-                        onMostrarPedido(pedidoAtual);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    bloco.setOnMouseClicked(mouseEvent -> {
+                        try {
+                            onMostrarPedido(pedidoAtual);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
+                    painel.getChildren().add(bloco);
+                }
+            } else {
+                for (Pedido pedidoAtual : pedidos) {
+                    if (!pedidoAtual.getStatus().isSucesso()) {
+                        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("bloco-pedido-view.fxml"));
+                        VBox bloco = fxmlLoader.load();
+
+                        BlocoPedidoController controller = fxmlLoader.getController();
+                        controller.setIdPedido(pedidoAtual.getId());
+                        controller.setLbNomeCliPedido(pedidoAtual.getClienteNome());
+                        controller.setLbDataPedido(pedidoAtual.getData());
+                        controller.setLbValorTotalPedido(pedidoAtual.getTotal());
+                        controller.setLbStatusPedido(pedidoAtual.getStatus().getDescricao());
+
+                        bloco.setOnMouseClicked(mouseEvent -> {
+                            try {
+                                onMostrarPedido(pedidoAtual);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+
+                        painel.getChildren().add(bloco);
                     }
-                });
-
-                painel.getChildren().add(bloco);
+                }
             }
+
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +104,7 @@ public class TodosPedidosController implements Initializable {
 
         Scene scene = new Scene(fxmlLoader.load());
 
-        CadastroPedidoController controller=fxmlLoader.getController();
+        CadastroPedidoController controller = fxmlLoader.getController();
         controller.carregarProdutos();
         controller.carregarTiposPagamento();
         controller.setLbid(p.getId());
