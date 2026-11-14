@@ -19,7 +19,12 @@ public class Pedido {
 
 
     //inner record
-    public record Item(Produto produto, int quantidade, double valor) {}
+    public record Item(Produto produto, int quantidade, double valor) {
+        public String getNomeProduto() { return produto.getNome(); }
+        public int getQuantidade() { return quantidade; }
+        public double getPreco() { return valor; }
+        public double getTotal() { return quantidade * valor; }
+    }
 
     public Pedido(int id, LocalDate data, String clienteNome, String clienteTelefone, double total, String local, String numero, TipoPagamento tipoPagamento, Status status ) {
         this.id = id;

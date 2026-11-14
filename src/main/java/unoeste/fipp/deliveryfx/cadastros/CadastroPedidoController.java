@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 
 public class CadastroPedidoController {
@@ -66,7 +67,47 @@ public class CadastroPedidoController {
     private TextField tftel;
 
     @FXML
-    private TableView<Itens> tvTabela;
+    private TableView<Pedido.Item> tvTabela;
+
+    public void setCbpgt(TipoPagamento tipo) {
+        cbpgt.setValue(tipo);
+    }
+
+    public void setValorTotal(double valorTotal) {
+        lbvalor.setText(String.format(Locale.US, "%.2f", valorTotal));
+    }
+
+    public void setLbid(int id) {
+       lbid.setText(id+"");
+    }
+
+    public void setTfNome(String nome) {
+        tfNome.setText(nome);
+    }
+
+    public void setTfcep(TextField tfcep) {
+        this.tfcep = tfcep;
+    }
+
+    public void setTflocal(String local) {
+        tflocal.setText(local);
+    }
+
+    public void setTfnumero(String numero) {
+        tfnumero.setText(numero);
+    }
+
+    public void setTftel(String tel) {
+        tftel.setText(tel);
+    }
+
+    public void setDpData(LocalDate data) {
+        dpData.setValue(data);
+    }
+
+    public void setTvTabela(List<Pedido.Item> itens) {
+        tvTabela.setItems(FXCollections.observableArrayList(itens));
+    }
 
     @FXML
     void onBuscarCep(KeyEvent event) {
@@ -153,10 +194,10 @@ public class CadastroPedidoController {
         }
 
 
-        Itens item = new Itens(null, produto, quantidade);
+        Pedido.Item item = new Pedido.Item(produto, quantidade, produto.getPreco());
 
 
-        ObservableList<Itens> itensAtuais = tvTabela.getItems();
+        ObservableList<Pedido.Item> itensAtuais = tvTabela.getItems();
         itensAtuais.add(item);
         tvTabela.setItems(itensAtuais);
 
@@ -196,10 +237,9 @@ public class CadastroPedidoController {
     @FXML
     public void initialize() {
 
-        ProdutoDal dal = new ProdutoDal();
-        cbProduto.setItems(FXCollections.observableArrayList(dal.get("")));
-        TipoPagamentoDal tpd = new TipoPagamentoDal();
-        cbpgt.setItems(FXCollections.observableArrayList(tpd.get("")));
+       carregarProdutos();
+       carregarTiposPagamento();
+
 
         tvTabela.setItems(FXCollections.observableArrayList());
 
@@ -212,5 +252,18 @@ public class CadastroPedidoController {
         coTot.setCellValueFactory(new PropertyValueFactory<>("total"));
 
     }
+
+    public void carregarProdutos(){
+        ProdutoDal dal = new ProdutoDal();
+        cbProduto.setItems(FXCollections.observableArrayList(dal.get("")));
+    }
+
+    public void carregarTiposPagamento(){
+        TipoPagamentoDal tpd = new TipoPagamentoDal();
+        cbpgt.setItems(FXCollections.observableArrayList(tpd.get("")));
+    }
+
+
+
 
 }
