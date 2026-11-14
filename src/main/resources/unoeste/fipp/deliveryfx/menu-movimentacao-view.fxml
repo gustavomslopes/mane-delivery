@@ -17,7 +17,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="275.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Novo Pedido" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onNovoPedido" prefHeight="51.0" prefWidth="275.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Novo Pedido" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
