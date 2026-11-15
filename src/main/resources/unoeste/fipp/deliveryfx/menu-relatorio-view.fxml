@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="555.0" prefWidth="555.0" spacing="30.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.menus.MenuCadastroController">
+<VBox alignment="CENTER" prefHeight="555.0" prefWidth="555.0" spacing="30.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.menus.MenuRelatorioController">
    <children>
       <Label text="Relatórios">
          <font>
@@ -17,7 +17,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Pedido em PDF" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onPedidoPDF" prefHeight="48.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Pedido em PDF" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -25,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Lista de Preços em PDF" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onListaPreçosPDF" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Lista de Preços em PDF" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -33,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="178.0" layoutY="223.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Pedidos por data em PDF" textFill="WHITE">
+      <Button layoutX="178.0" layoutY="223.0" mnemonicParsing="false" onAction="#onPedidosDataPDF" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Pedidos por data em PDF" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -41,7 +41,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="  Estoque baixo" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onEstoqueBaixoPDF" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="  Estoque baixo" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Gráfico de Vendas" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onGraficoVendas" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Gráfico de Vendas" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -57,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Gráfico dos 20 produtos mais vendidos" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#onGraficoMVendidos" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Gráfico dos 20 produtos mais vendidos" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
