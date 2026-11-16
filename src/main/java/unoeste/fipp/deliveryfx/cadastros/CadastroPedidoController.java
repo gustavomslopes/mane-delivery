@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import unoeste.fipp.deliveryfx.DeliveryFX;
@@ -153,7 +155,10 @@ public class CadastroPedidoController {
 
             Status status = new StatusDal().get(6);
             Pedido pedido = new Pedido(dpData.getValue(), tfNome.getText(), tftel.getText(), Double.parseDouble(lbvalor.getText().replace(",", ".")), tflocal.getText(), tfnumero.getText(), cbpgt.getSelectionModel().getSelectedItem(), status);
-
+            ObservableList<Pedido.Item> itensAtuais = tvTabela.getItems();
+            for (Pedido.Item item : itensAtuais) {
+                pedido.adicionarItem(item);
+            }
             PedidoDal pedidoDal = new PedidoDal();
             if (!pedidoDal.gravar(pedido)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -199,10 +204,7 @@ public class CadastroPedidoController {
             return;
         }
 
-
         Pedido.Item item = new Pedido.Item(produto, quantidade, produto.getPreco());
-
-
         ObservableList<Pedido.Item> itensAtuais = tvTabela.getItems();
         itensAtuais.add(item);
         tvTabela.setItems(itensAtuais);
@@ -270,4 +272,13 @@ public class CadastroPedidoController {
     }
 
 
+    public void onHelp(ActionEvent actionEvent) {
+        WebView webView=new WebView();
+        webView.setPrefSize(800,600);
+        File file=new File("help/pedidos.html");
+        webView.getEngine().load(file.toURI().toString());
+        Stage stage=new Stage();
+        stage.setScene(new Scene(webView));
+        stage.showAndWait();
+    }
 }
