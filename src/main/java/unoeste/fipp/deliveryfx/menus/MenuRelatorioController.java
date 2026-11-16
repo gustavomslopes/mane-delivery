@@ -12,14 +12,6 @@ package unoeste.fipp.deliveryfx.menus;
     import java.io.IOException;
 
     public class MenuRelatorioController {
-        public void onPedidoPDF(ActionEvent actionEvent) throws IOException {
-            FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("menu-pedido-pdf-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setTitle("Pedido PDF");
-            stage.setScene(scene);
-            stage.showAndWait();
-        }
 
         public void onListaPreçosPDF(ActionEvent actionEvent) throws IOException {
             if(Relatorios.Precos("precos.pdf"))

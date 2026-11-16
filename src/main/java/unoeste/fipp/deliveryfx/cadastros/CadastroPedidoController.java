@@ -4,22 +4,28 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.json.JSONObject;
+import unoeste.fipp.deliveryfx.DeliveryFX;
 import unoeste.fipp.deliveryfx.db.dals.PedidoDal;
 import unoeste.fipp.deliveryfx.db.dals.ProdutoDal;
 import unoeste.fipp.deliveryfx.db.dals.StatusDal;
 import unoeste.fipp.deliveryfx.db.dals.TipoPagamentoDal;
 import unoeste.fipp.deliveryfx.db.entidade.*;
+import unoeste.fipp.deliveryfx.db.util.Relatorios;
 import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.awt.*;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
@@ -78,7 +84,7 @@ public class CadastroPedidoController {
     }
 
     public void setLbid(int id) {
-       lbid.setText(id+"");
+        lbid.setText(id + "");
     }
 
     public void setTfNome(String nome) {
@@ -141,7 +147,7 @@ public class CadastroPedidoController {
 
     @FXML
     void onCadastrarPedido(ActionEvent event) {
-        if(tfNome.getText().isEmpty() || tftel.getText().isEmpty() || lbvalor.getText().isEmpty() || tfnumero.getText().isEmpty() || cbpgt.getSelectionModel().isEmpty() || tvTabela.getItems().isEmpty()){
+        if (tfNome.getText().isEmpty() || tftel.getText().isEmpty() || lbvalor.getText().isEmpty() || tfnumero.getText().isEmpty() || cbpgt.getSelectionModel().isEmpty() || tvTabela.getItems().isEmpty()) {
             tfNome.requestFocus();
         } else {
 
@@ -228,17 +234,17 @@ public class CadastroPedidoController {
     }
 
     @FXML
-    public void OnImprimir(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Funcionalidade de impressão.");
-        alert.showAndWait();
+    public void OnImprimir(ActionEvent actionEvent) throws IOException {
+        if(Relatorios.Pedidos("pedido.pdf", lbid.getText()))
+            Desktop.getDesktop().open(new File("pedido.pdf"));
+
     }
 
     @FXML
     public void initialize() {
 
-       carregarProdutos();
-       carregarTiposPagamento();
+        carregarProdutos();
+        carregarTiposPagamento();
 
 
         tvTabela.setItems(FXCollections.observableArrayList());
@@ -253,17 +259,15 @@ public class CadastroPedidoController {
 
     }
 
-    public void carregarProdutos(){
+    public void carregarProdutos() {
         ProdutoDal dal = new ProdutoDal();
         cbProduto.setItems(FXCollections.observableArrayList(dal.get("")));
     }
 
-    public void carregarTiposPagamento(){
+    public void carregarTiposPagamento() {
         TipoPagamentoDal tpd = new TipoPagamentoDal();
         cbpgt.setItems(FXCollections.observableArrayList(tpd.get("")));
     }
-
-
 
 
 }

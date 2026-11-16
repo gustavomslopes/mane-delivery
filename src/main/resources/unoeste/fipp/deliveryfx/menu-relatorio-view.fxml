@@ -17,14 +17,6 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button mnemonicParsing="false" onAction="#onPedidoPDF" prefHeight="48.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Pedido em PDF" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button mnemonicParsing="false" onAction="#onListaPreçosPDF" prefHeight="51.0" prefWidth="448.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Lista de Preços em PDF" textFill="WHITE">
          <font>
             <Font size="24.0" />
