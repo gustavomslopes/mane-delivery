@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <center>
+      <BarChart fx:id="bcBarrasVendidos" BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis fx:id="eixoX" label="Meses" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="eixoY" label="Vendas" />
+        </yAxis>
+      </BarChart>
+   </center>
+</BorderPane>
