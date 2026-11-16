@@ -34,6 +34,7 @@
             <TextField fx:id="tftel" layoutX="31.0" layoutY="191.0" prefHeight="26.0" prefWidth="102.0" />
             <ComboBox fx:id="cbpgt" layoutX="176.0" layoutY="192.0" prefHeight="26.0" prefWidth="262.0" />
             <Label layoutX="176.0" layoutY="170.0" text="Tipo Pagamento" />
+            <Button layoutX="640.0" layoutY="10.0" mnemonicParsing="false" onAction="#onHelp" text="?" />
          </children>
       </AnchorPane>
       <VBox prefHeight="292.0" prefWidth="698.0">

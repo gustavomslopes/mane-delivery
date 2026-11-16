@@ -6,6 +6,7 @@ module unoeste.fipp.deliveryfx {
     requires org.json;
     requires kernel;
     requires layout;
+    requires javafx.web;
     opens unoeste.fipp.deliveryfx.db.entidade to javafx.base;
 
     opens unoeste.fipp.deliveryfx to javafx.fxml;
@@ -24,4 +25,6 @@ module unoeste.fipp.deliveryfx {
 
     opens unoeste.fipp.deliveryfx.graficos to javafx.fxml;
     exports unoeste.fipp.deliveryfx.graficos;
+    exports unoeste.fipp.deliveryfx.movimentacoes;
+    opens unoeste.fipp.deliveryfx.movimentacoes to javafx.fxml;
 }

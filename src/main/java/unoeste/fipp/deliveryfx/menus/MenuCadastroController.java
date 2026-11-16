@@ -6,10 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import unoeste.fipp.deliveryfx.DeliveryFX;
-import unoeste.fipp.deliveryfx.db.util.Relatorios;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class MenuCadastroController {

@@ -1,13 +1,11 @@
-package unoeste.fipp.deliveryfx.db.util;
+package unoeste.fipp.deliveryfx.util;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.List;
 import com.itextpdf.layout.element.ListItem;
@@ -109,23 +107,51 @@ public class Relatorios {
         Paragraph subCat3 = new Paragraph("Informações do pedido")
                 .setFontSize(16)
                 .setBold();
-        document.add(subCat2);
+        document.add(subCat3);
         document.add(new Paragraph("Total: R$"+pedido.getTotal()));
         document.add(new Paragraph("Local: "+pedido.getLocal()));
         document.add(new Paragraph("Numero: "+pedido.getNumero()));
         document.add(new Paragraph("Tipo de pagamento: "+pedido.getTipoPagamento().getNome()));
         document.add(new Paragraph("Status: "+pedido.getStatus().getDescricao()));
 
-        // Add a list
-        List list = new List()
-                .setListSymbol("\u2022")
-                .setFontSize(12);
+        Paragraph itens = new Paragraph("Itens")
+                .setFontSize(16)
+                .setBold();
+        document.add(itens);
+
+        createTable(document, id);
+        document.add(new Paragraph("Valor Total: "+pedido.getTotal()));
+    }
+
+    private static void createTable(Document document, int id) {
+        PedidoDal pedidoDal = new PedidoDal();
+        Pedido pedido = pedidoDal.get(id);
+        // Create table with 3 columns
+        Table table = new Table(UnitValue.createPercentArray(new float[]{1, 1, 1}))
+                .useAllAvailableWidth();
+
+        // Add header cells
+        table.addHeaderCell(new Cell().add(new Paragraph("Nome")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setBold()));
+        table.addHeaderCell(new Cell().add(new Paragraph("Quantidade")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setBold()));
+        table.addHeaderCell(new Cell().add(new Paragraph("Valor")
+                .setTextAlignment(TextAlignment.CENTER)
+                .setBold()));
+
         for(int i=0; i<pedido.getItens().size(); i++)
         {
-            list.add(new ListItem("Item "+(i+1)+": "+pedido.getItens().get(i).getNomeProduto()+" x"+pedido.getItens().get(i).getQuantidade()));
+            table.addCell(pedido.getItens().get(i).getNomeProduto())
+                    .setTextAlignment(TextAlignment.CENTER);
+            table.addCell(pedido.getItens().get(i).getQuantidade()+"")
+                    .setTextAlignment(TextAlignment.CENTER);
+            table.addCell(pedido.getItens().get(i).getTotal()+"")
+                    .setTextAlignment(TextAlignment.CENTER);
         }
 
-        document.add(list);
+        document.add(table);
     }
 
     private static void GerarPrecosPDF(Document document) {
