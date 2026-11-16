@@ -21,4 +21,7 @@ module unoeste.fipp.deliveryfx {
 
     opens unoeste.fipp.deliveryfx.relatorios to javafx.fxml;
     exports unoeste.fipp.deliveryfx.relatorios;
+
+    opens unoeste.fipp.deliveryfx.graficos to javafx.fxml;
+    exports unoeste.fipp.deliveryfx.graficos;
 }

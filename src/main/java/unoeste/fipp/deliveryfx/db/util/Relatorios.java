@@ -125,7 +125,6 @@ public class Relatorios {
             list.add(new ListItem("Item "+(i+1)+": "+pedido.getItens().get(i).getNomeProduto()+" x"+pedido.getItens().get(i).getQuantidade()));
         }
 
-
         document.add(list);
     }
 

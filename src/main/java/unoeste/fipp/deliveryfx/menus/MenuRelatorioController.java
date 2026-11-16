@@ -40,7 +40,13 @@ package unoeste.fipp.deliveryfx.menus;
                 Desktop.getDesktop().open(new File("estoquebaixo.pdf"));
         }
 
-        public void onGraficoVendas(ActionEvent actionEvent) {
+        public void onGraficoVendas(ActionEvent actionEvent) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("grafico-linhas-vendas-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Grafico Ultimos 7 Dias!");
+            stage.setScene(scene);
+            stage.showAndWait();
         }
 
         public void onGraficoMVendidos(ActionEvent actionEvent) {

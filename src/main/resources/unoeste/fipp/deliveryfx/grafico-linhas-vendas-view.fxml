@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="500.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.graficos.GraficoLinhasVendasController">
+   <center>
+       <LineChart fx:id="lcLinhasVendas" title="Vendas por mês">
+           <xAxis>
+               <CategoryAxis fx:id="eixoX" label="Dias" />
+           </xAxis>
+           <yAxis>
+               <NumberAxis fx:id="eixoY" label="Qtde. vendas" autoRanging="false" lowerBound="0" tickUnit="1" minorTickCount="0"/>
+           </yAxis>
+       </LineChart>
+   </center>
+</BorderPane>
