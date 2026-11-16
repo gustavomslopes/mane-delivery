@@ -5,7 +5,8 @@ import unoeste.fipp.deliveryfx.db.util.SingletonDB;
 
 import javax.swing.*;
 
-public class Launcher {
+public class
+Launcher {
     public static void main(String[] args) {
         if(SingletonDB.conectar())
             Application.launch(DeliveryFX.class, args);

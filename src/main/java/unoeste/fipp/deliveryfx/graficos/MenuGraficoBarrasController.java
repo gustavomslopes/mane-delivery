@@ -1,12 +1,23 @@
 package unoeste.fipp.deliveryfx.graficos;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
+import unoeste.fipp.deliveryfx.DeliveryFX;
+
+import java.io.IOException;
 
 public class MenuGraficoBarrasController {
-    public DatePicker dpGraficoBarras;
+    public static DatePicker dpGraficoBarras;
 
-    public void onGerarGraficoBarras(ActionEvent actionEvent) {
-
+    public void onGerarGraficoBarras(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("grafico-barras-vendidos-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Grafico mais vendidos!");
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
