@@ -28,11 +28,21 @@ public class GraficoBarrasVendidosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        datafim = MenuGraficoBarrasController.dpGraficoBarras.getValue();
-        datainicio = datafim.minusMonths(1);
+        datafim = MenuGraficoBarrasController.getData().withDayOfMonth(30);
+        datainicio = datafim.withDayOfMonth(1);
 
         GerarGraficoBarrasVendidos();
 
+    }
+
+    private int temProduto(List<Struct> lista, String nome){
+        int pos=0;
+        while(pos<lista.size() && !(lista.get(pos).getNome().equals(nome)))
+            pos++;
+        if(pos<lista.size())
+            return pos;
+
+        return -1;
     }
 
     public void GerarGraficoBarrasVendidos()
@@ -40,30 +50,29 @@ public class GraficoBarrasVendidosController implements Initializable {
         ProdutoDal produtoDal = new ProdutoDal();
         PedidoDal pedidoDal = new PedidoDal();
 
-        List<Pedido> pedidoList = pedidoDal.get("ped_data > '"+datainicio.toString()+"' AND ped_data < '"+datafim.toString()+"'");
+        List<Pedido> pedidoList = pedidoDal.get("ped_data > '"+datainicio.getYear()+"-"+datainicio.getMonth()+"-01' AND ped_data < '"+datafim.toString()+"'");
 
         XYChart.Series<String, Number> serie = new XYChart.Series<>();
         serie.setName("silvio");
 
-        ArrayList<Struct> lista = new ArrayList<>();
+        List<Struct> lista = new ArrayList<>();
 
         for (int i = 0; i < pedidoList.size(); i++) {
             List<Pedido.Item> itensList = pedidoList.get(i).getItens();
             for (int j = 0; j < itensList.size(); j++) {
                 Struct atual = new Struct(itensList.get(j).getQuantidade(), itensList.get(j).getNomeProduto());
-                if (!lista.contains(atual)) {
+                if (temProduto(lista, atual.getNome())==-1) {
                     lista.add(atual);
-                    lista.sort(Comparator.<Struct>reverseOrder());
+                    lista.sort(Comparator.<Struct>naturalOrder());
                 } else {
-                    int quantidade = lista.get(lista.indexOf(atual)).getQuantidade();
-                    quantidade = quantidade + atual.getQuantidade();
-                    lista.get(lista.indexOf(atual)).setQuantidade(quantidade);
+                    lista.get(temProduto(lista, atual.getNome())).setQuantidade(lista.get(j).getQuantidade()+atual.getQuantidade());
+                    lista.sort(Comparator.<Struct>reverseOrder());
                 }
             }
         }
 
         int pos = 0;
-        while(pos < 20 && lista.get(pos)!=null)
+        while(pos<lista.size() && pos < 20)
         {
             serie.getData().add(new XYChart.Data<>(lista.get(pos).getNome(), lista.get(pos).getQuantidade()));
             pos++;
@@ -71,7 +80,8 @@ public class GraficoBarrasVendidosController implements Initializable {
 
         bcBarrasVendidos.getData().clear();
         bcBarrasVendidos.getData().add(serie);
-        eixoY.setUpperBound(lista.getFirst().getQuantidade());
+        if(!lista.isEmpty())
+            eixoY.setUpperBound(lista.getFirst().getQuantidade());
     }
 
 

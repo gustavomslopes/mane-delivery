@@ -8,11 +8,24 @@ import javafx.stage.Stage;
 import unoeste.fipp.deliveryfx.DeliveryFX;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class MenuGraficoBarrasController {
-    public static DatePicker dpGraficoBarras;
+
+    private static LocalDate data;
+
+    public static LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate dataEsc) {
+        data = dataEsc;
+    }
+
+    public DatePicker dpGraficoBarras;
 
     public void onGerarGraficoBarras(ActionEvent actionEvent) throws IOException {
+        setData(dpGraficoBarras.getValue());
         FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("grafico-barras-vendidos-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
