@@ -1,4 +1,4 @@
-package unoeste.fipp.deliveryfx;
+package unoeste.fipp.deliveryfx.movimentacoes;
 
 import javafx.scene.control.Label;
 

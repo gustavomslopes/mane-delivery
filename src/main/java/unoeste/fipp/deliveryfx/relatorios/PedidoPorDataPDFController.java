@@ -2,14 +2,13 @@ package unoeste.fipp.deliveryfx.relatorios;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
-import unoeste.fipp.deliveryfx.db.util.Relatorios;
+import unoeste.fipp.deliveryfx.util.Relatorios;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 
-public class MenuDataPedidoPDFController {
+public class PedidoPorDataPDFController {
     public DatePicker dpDataPedidoPdf;
 
     public void OnGerarDatPedidoPdf(ActionEvent actionEvent) throws IOException {

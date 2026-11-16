@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="540.0" prefWidth="504.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.relatorios.MenuDataPedidoPDFController">
+<VBox alignment="CENTER" prefHeight="540.0" prefWidth="504.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.relatorios.PedidoPorDataPDFController">
    <children>
       <Label text="Pedido por data PDF">
          <font>

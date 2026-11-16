@@ -25,4 +25,6 @@ module unoeste.fipp.deliveryfx {
 
     opens unoeste.fipp.deliveryfx.graficos to javafx.fxml;
     exports unoeste.fipp.deliveryfx.graficos;
+    exports unoeste.fipp.deliveryfx.movimentacoes;
+    opens unoeste.fipp.deliveryfx.movimentacoes to javafx.fxml;
 }

@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import unoeste.fipp.deliveryfx.DeliveryFX;
-import unoeste.fipp.deliveryfx.TodosPedidosController;
+import unoeste.fipp.deliveryfx.movimentacoes.TodosPedidosController;
 
 import java.io.IOException;
 

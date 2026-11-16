@@ -5,7 +5,7 @@ package unoeste.fipp.deliveryfx.menus;
     import javafx.scene.Scene;
     import javafx.stage.Stage;
     import unoeste.fipp.deliveryfx.DeliveryFX;
-    import unoeste.fipp.deliveryfx.db.util.Relatorios;
+    import unoeste.fipp.deliveryfx.util.Relatorios;
 
     import java.awt.*;
     import java.io.File;
