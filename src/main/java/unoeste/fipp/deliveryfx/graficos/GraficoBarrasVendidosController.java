@@ -63,10 +63,10 @@ public class GraficoBarrasVendidosController implements Initializable {
                 Struct atual = new Struct(itensList.get(j).getQuantidade(), itensList.get(j).getNomeProduto());
                 if (temProduto(lista, atual.getNome())==-1) {
                     lista.add(atual);
-                    lista.sort(Comparator.<Struct>naturalOrder());
+                    lista.sort(Comparator.comparingInt(Struct::getQuantidade).reversed());
                 } else {
-                    lista.get(temProduto(lista, atual.getNome())).setQuantidade(lista.get(j).getQuantidade()+atual.getQuantidade());
-                    lista.sort(Comparator.<Struct>reverseOrder());
+                    lista.get(temProduto(lista, atual.getNome())).setQuantidade(lista.get(temProduto(lista, atual.getNome())).getQuantidade()+atual.getQuantidade());
+                    lista.sort(Comparator.comparingInt(Struct::getQuantidade).reversed());
                 }
             }
         }
