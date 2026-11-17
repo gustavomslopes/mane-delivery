@@ -31,7 +31,7 @@ public class GraficoLinhasVendasController implements Initializable {
     {
         PedidoDal pedidoDal = new PedidoDal();
         XYChart.Series<String, Number> serie = new XYChart.Series<>();
-        serie.setName("silvio");
+        serie.setName("qtd vendas");
         int maior=0;
 
         LocalDate atual = datainicio;

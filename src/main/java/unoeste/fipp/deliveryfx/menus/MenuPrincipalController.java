@@ -52,4 +52,14 @@ public class MenuPrincipalController implements Initializable {
         stage.setScene(scene);
         stage.showAndWait();
     }
+
+    public void onMenuOpcoes(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DeliveryFX.class.getResource("menu-opcoes-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Opcções");
+        stage.setScene(scene);
+        stage.showAndWait();
+
+    }
 }

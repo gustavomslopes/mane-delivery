@@ -53,7 +53,7 @@ public class GraficoBarrasVendidosController implements Initializable {
         List<Pedido> pedidoList = pedidoDal.get("ped_data > '"+datainicio.getYear()+"-"+datainicio.getMonth()+"-01' AND ped_data < '"+datafim.toString()+"'");
 
         XYChart.Series<String, Number> serie = new XYChart.Series<>();
-        serie.setName("silvio");
+        serie.setName("qtd vendas");
 
         List<Struct> lista = new ArrayList<>();
 

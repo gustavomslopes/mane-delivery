@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="555.0" prefWidth="555.0" spacing="60.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.menus.MenuPrincipalController">
+<VBox alignment="CENTER" prefHeight="555.0" prefWidth="555.0" spacing="40.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unoeste.fipp.deliveryfx.menus.MenuPrincipalController">
    <children>
       <ImageView fx:id="imageView" fitHeight="121.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
          <VBox.margin>
@@ -36,6 +36,14 @@
          </cursor>
       </Button>
       <Button mnemonicParsing="false" onAction="#onMenuRelatorio" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Relatórios" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="178.0" layoutY="495.0" mnemonicParsing="false" onAction="#onMenuOpcoes" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: darkred; -fx-background-radius: 15;" text="Opções" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
